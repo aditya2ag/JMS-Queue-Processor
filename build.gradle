@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+	id 'org.hidetake.swagger.generator' version '2.16.0'
+}
+
+group = 'oracle-jms-queueprocessor'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+  set('springCloudVersion', "2021.0.2")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	
+	implementation fileTree(dir: '../custom_jars', include: 'wlthint3client*.jar')
+	implementation fileTree(dir: '../lib', include: 'swagger-annotations-*.jar')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

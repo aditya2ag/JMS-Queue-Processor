@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+ * This source is part of the Oracle Banking Credit Facility Process Management Software Product.
+ * Copyright (c) 2021 , 2022 , Oracle and/or its affiliates.  All rights reserved.
+ *
+ * No part of this work may be reproduced, stored in a retrieval system, adopted or transmitted in any form or by any means,
+ * electronic, mechanical, photographic, graphic, optic recording or otherwise,
+ * translated in any language or computer language, without the prior written permission of Oracle and/or its affiliates.
+ *
+ * Oracle Financial Services Software Limited.
+ * Oracle Park, Off Western Express Highway,
+ * Goregaon (East),
+ * Mumbai - 400 063, India.
+ ****************************************************************************** -->
+<wls:weblogic-web-app
+	xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.9/weblogic-web-app.xsd">
+	<wls:weblogic-version>12.2.1.4</wls:weblogic-version>
+	<wls:context-root>oracle-jms-queueprocessor</wls:context-root>
+</wls:weblogic-web-app>
