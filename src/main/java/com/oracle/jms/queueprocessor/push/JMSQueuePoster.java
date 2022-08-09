@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 
 import com.oracle.jms.queueprocessor.dto.MessageRequestDto;
 import com.oracle.jms.queueprocessor.dto.MessageResponseDto;
-import com.oracle.jms.queueprocessor.service.JMSQueuePosterService;
 
 @Component
 public class JMSQueuePoster {
