@@ -99,15 +99,23 @@ public class JMSQueuePoster {
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, this.JNDI_FACTORY);
 		env.put(Context.PROVIDER_URL, this.JMS_SERVER_URL);
+	//	Context.SECURITY_PROTOCOL
 		return new InitialContext(env);
 	}
 
 	public ResponseEntity<MessageResponseDto> postMessageToQueue(MessageRequestDto messageReq) {
 		MessageResponseDto response = new MessageResponseDto();
 		response.setResponse("Message posted to queue->" + messageReq.getJmsQueue() + " successfully");
-		String WL_SERVER_URL = "t3://".concat(messageReq.getJmsServerIP()).concat(":")
+		/*
+		 * String WL_SERVER_URL =
+		 * "t3s://".concat(messageReq.getJmsServerIP()).concat(":")
+		 * .concat(messageReq.getJsmServerPort());
+		 */
+		
+		String WL_SERVER_URL = messageReq.getJmsServerIP().concat(":")
 				.concat(messageReq.getJsmServerPort());
-
+		
+		
 		JMSQueuePoster jmsQueuePoster = new JMSQueuePoster(WL_SERVER_URL, messageReq.getJmsConnectionFactory(),
 				messageReq.getJmsQueue());
 

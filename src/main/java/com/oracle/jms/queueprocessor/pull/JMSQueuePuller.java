@@ -108,9 +108,15 @@ public class JMSQueuePuller {
 
 	public ResponseEntity<List<JmsMessageResponseDto>> pullMessageFromQueue(MessagePullReqHeaderDto reqHeaderDto) {
 		List<JmsMessageResponseDto> response = new ArrayList<JmsMessageResponseDto>();
-		String WL_SERVER_URL = "t3://".concat(reqHeaderDto.getJmsServerIP()).concat(":")
-				.concat(reqHeaderDto.getJsmServerPort());
+		/*
+		 * String WL_SERVER_URL =
+		 * "t3://".concat(reqHeaderDto.getJmsServerIP()).concat(":")
+		 * .concat(reqHeaderDto.getJsmServerPort());
+		 */
 
+		String WL_SERVER_URL = reqHeaderDto.getJmsServerIP().concat(":")
+				.concat(reqHeaderDto.getJsmServerPort());
+		
 		JMSQueuePuller jmsQueuePuller = new JMSQueuePuller(WL_SERVER_URL, reqHeaderDto.getJmsConnectionFactory(),
 				reqHeaderDto.getJmsQueue());
 
