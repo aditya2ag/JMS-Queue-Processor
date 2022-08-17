@@ -7,6 +7,7 @@ package com.oracle.jms.queueprocessor.push;
 
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.jms.JMSException;
 import javax.jms.Queue;
@@ -26,6 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.oracle.jms.queueprocessor.dto.JmsMessageResponseDto;
 import com.oracle.jms.queueprocessor.dto.MessageRequestDto;
 import com.oracle.jms.queueprocessor.dto.MessageResponseDto;
 
@@ -111,6 +113,12 @@ public class JMSQueuePoster {
 		 * "t3s://".concat(messageReq.getJmsServerIP()).concat(":")
 		 * .concat(messageReq.getJsmServerPort());
 		 */
+		
+		if(!messageReq.getJmsServerIP().startsWith("t3://") && !messageReq.getJmsServerIP().startsWith("t3s://")) {
+			debug("jmsServerIP must start with t3:// OR t3s://");
+			response.setResponse("jmsServerIP must start with t3:// OR t3s://  (Example->t3s://IP or Hostname)");
+			return new ResponseEntity<MessageResponseDto>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
 		String WL_SERVER_URL = messageReq.getJmsServerIP().concat(":")
 				.concat(messageReq.getJsmServerPort());

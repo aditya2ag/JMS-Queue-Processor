@@ -113,7 +113,15 @@ public class JMSQueuePuller {
 		 * "t3://".concat(reqHeaderDto.getJmsServerIP()).concat(":")
 		 * .concat(reqHeaderDto.getJsmServerPort());
 		 */
-
+		
+		if(!reqHeaderDto.getJmsServerIP().startsWith("t3://") && !reqHeaderDto.getJmsServerIP().startsWith("t3s://")) {
+			debug("JmsServerIP must start with t3:// OR t3s://");
+			JmsMessageResponseDto jmsError = new JmsMessageResponseDto();
+			jmsError.setMessage("jmsServerIP must start with t3:// OR t3s://  (Example->t3s://IP or Hostname)");
+			response.add(jmsError);
+			return new ResponseEntity<List<JmsMessageResponseDto>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 		String WL_SERVER_URL = reqHeaderDto.getJmsServerIP().concat(":")
 				.concat(reqHeaderDto.getJsmServerPort());
 		
